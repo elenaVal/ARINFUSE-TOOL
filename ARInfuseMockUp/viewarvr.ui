@@ -6,37 +6,50 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>567</width>
-    <height>458</height>
+    <width>740</width>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>3D View - AR/VR</string>
   </property>
+  <widget class="QPushButton" name="showImage">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>9</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>AR view</string>
+   </property>
+  </widget>
   <widget class="QLabel" name="label_pic">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>60</y>
-     <width>311</width>
-     <height>291</height>
+     <x>350</x>
+     <y>40</y>
+     <width>361</width>
+     <height>281</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="showImage">
+  <widget class="QLabel" name="label_normal">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>90</y>
-     <width>101</width>
-     <height>41</height>
+     <x>346</x>
+     <y>369</y>
+     <width>361</width>
+     <height>281</height>
     </rect>
    </property>
    <property name="text">
-    <string>AR view</string>
+    <string/>
    </property>
   </widget>
  </widget>

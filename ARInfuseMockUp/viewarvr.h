@@ -15,6 +15,10 @@ public:
     explicit ViewARVR(QWidget *parent = nullptr);
     ~ViewARVR();
 
+    void showARImage();
+    void runLARAapp();
+    void showNormalImage();
+
 private slots:
     void on_showImage_clicked();
 

@@ -1,0 +1,10 @@
+1. In order to run all the functionalities of the GIS module you have to setup the followings:
+   a. Install Postgres db and Postgis plugin
+   b. Create a database with "gisInfusedb" name and a user with following credentials "postgres", "s6JMAjtk"
+   c. Create a schema in this previous database called "infusegisschema"
+
+Please place the folders of the "GIS-Module-SetUp.zip" folder in the build directory of the project.
+example: 
+
+\ARINFUSE\build-ARInfuseMockUp-Desktop_Qt_5_11_2_MinGW_32bit-Debug\debug
+

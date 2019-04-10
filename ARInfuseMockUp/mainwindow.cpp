@@ -28,6 +28,7 @@ void MainWindow::on_gisViewBtn_clicked()
     QString path = qApp->applicationDirPath();
     //set current working directory
     gisProcess->setWorkingDirectory(path);
+    //call the jar file
     gisProcess -> start("java -jar gis-gis.jar");
     qDebug() << gisProcess->state();
     viewgis = new viewGIS(this);

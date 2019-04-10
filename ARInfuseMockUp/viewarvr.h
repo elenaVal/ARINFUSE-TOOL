@@ -15,6 +15,9 @@ public:
     explicit ViewARVR(QWidget *parent = nullptr);
     ~ViewARVR();
 
+private slots:
+    void on_showImage_clicked();
+
 private:
     Ui::ViewARVR *ui;
 };

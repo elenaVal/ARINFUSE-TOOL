@@ -30,6 +30,7 @@ void MainWindow::on_gisViewBtn_clicked()
     gisProcess->setWorkingDirectory(path);
     //call the jar file
     gisProcess -> start("java -jar gis-gis.jar");
+    //connect( gisProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(ReadOut()) );
     qDebug() << gisProcess->state();
     viewgis = new viewGIS(this);
 }
@@ -38,4 +39,12 @@ void MainWindow::on_settingsBtn_clicked()
 {
     settings = new Settings(this);
     settings->show();
+}
+
+void MainWindow::ReadOut(){
+    qDebug() <<"in ReadOut method";
+    QProcess *p = dynamic_cast<QProcess *>( sender() );
+    if (p)
+        qDebug() <<p->readAllStandardOutput();
+    qDebug() << p->readAllStandardError();
 }

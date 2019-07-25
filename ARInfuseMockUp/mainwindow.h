@@ -34,6 +34,7 @@ private:
 
 public:
     QProcess *gisProcess;
+     void ReadOut();
 };
 
 #endif // MAINWINDOW_H

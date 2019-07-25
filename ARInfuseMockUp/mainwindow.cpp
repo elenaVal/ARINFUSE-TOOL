@@ -23,20 +23,15 @@ void MainWindow::on_viewARBtn_clicked()
 
 void MainWindow::on_gisViewBtn_clicked()
 {
-   /* viewgis = new viewGIS(this);
-    viewgis->show();*/
-
     gisProcess = new QProcess(this);
-        //get the directory where the executable is (of the qt application, .exe)
+    //get the directory where the executable is (of the qt application, .exe)
     QString path = "E:/ANINFUSEMODULES/GIS-MODULE/GIS-MODULE/";
-        //set current working directory
+    //set current working directory
     gisProcess->setWorkingDirectory(path);
-        //call the jar file
+    //call the jar file
     gisProcess -> start("java -jar gis-gis.jar");
-        //connect( gisProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(ReadOut()) );
-     qDebug() << gisProcess->state();
-     viewgis = new viewGIS(this);
-
+    qDebug() << gisProcess->state();
+    viewgis = new viewGIS(this);
 }
 
 void MainWindow::on_settingsBtn_clicked()

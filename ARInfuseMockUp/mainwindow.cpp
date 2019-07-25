@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QProcess>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,8 +23,20 @@ void MainWindow::on_viewARBtn_clicked()
 
 void MainWindow::on_gisViewBtn_clicked()
 {
-    viewgis = new viewGIS(this);
-    viewgis->show();
+   /* viewgis = new viewGIS(this);
+    viewgis->show();*/
+
+    gisProcess = new QProcess(this);
+        //get the directory where the executable is (of the qt application, .exe)
+        QString path = qApp->applicationDirPath();
+        //set current working directory
+        gisProcess->setWorkingDirectory(path);
+        //call the jar file
+        gisProcess -> start("java -jar gis-gis.jar");
+        //connect( gisProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(ReadOut()) );
+        qDebug() << gisProcess->state();
+        viewgis = new viewGIS(this);
+
 }
 
 void MainWindow::on_settingsBtn_clicked()

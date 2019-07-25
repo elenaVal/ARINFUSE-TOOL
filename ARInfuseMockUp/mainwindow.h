@@ -5,6 +5,7 @@
 #include "viewarvr.h"
 #include "viewgis.h"
 #include "settings.h"
+#include<QProcess>
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +31,11 @@ private:
     ViewARVR *viewARVR;
     viewGIS *viewgis;
     Settings *settings;
+
+public:
+    QProcess *gisProcess;
+     void ReadOut();
+
 };
 
 #endif // MAINWINDOW_H

@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     ui->setupUi(this);
 }
 
@@ -25,7 +26,7 @@ void MainWindow::on_gisViewBtn_clicked()
 {
     gisProcess = new QProcess(this);
     //get the directory where the executable is (of the qt application, .exe)
-    QString path = "E:/ANINFUSEMODULES/GIS-MODULE/GIS-MODULE/";
+    QString path = "../GIS-MODULE/GIS-MODULE/";
     //set current working directory
     gisProcess->setWorkingDirectory(path);
     //call the jar file

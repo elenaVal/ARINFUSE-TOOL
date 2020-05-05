@@ -1,20 +1,26 @@
 #include "viewarvr.h"
-#include "ui_viewarvr.h"
+
+#include <functional>
+
 #include <QPixmap>
-#include <QProcess>
 
-ViewARVR::ViewARVR(QWidget *parent) :
+#include "configuration.h"
+
+#include "ui_viewarvr.h"
+
+
+namespace {
+
+const char kLaraTool[] = "LARABuild/LARA.exe";
+
+}  // namespace
+
+ViewARVR::ViewARVR(QWidget *parent, arinfuse::Configuration* configuration, arinfuse::ToolRunner* tool_runner) :
     QDialog(parent),
-    ui(new Ui::ViewARVR)
-{
-    ui->setupUi(this);
-
-
-}
-
-ViewARVR::~ViewARVR()
-{
-    delete ui;
+    ui_(new Ui::ViewARVR()),
+    configuration_(configuration),
+    tool_runner_(tool_runner) {
+  ui_->setupUi(this);
 }
 
 //With the click of the button
@@ -22,37 +28,53 @@ ViewARVR::~ViewARVR()
 //Creates the AR image. This image
 //is the displayed to the user.
 // **Note** (May need to change the size of the image)
-void ViewARVR::on_showImage_clicked()
-{
-    runLARAapp();
-    showARImage();
-    showNormalImage();
+void ViewARVR::on_showImage_clicked() {
+  ShowImage(ui_->label_pic, arinfuse::Configuration::kInputImageFile);
+  runLARAapp();
 }
 
-void ViewARVR::showARImage()
-{
-    QPixmap pix("../LARABuild/Data/image_augmented.jpg");
-    int width = ui->label_pic->width();
-    int height = ui->label_pic->height();
-    ui->label_pic->setPixmap(pix.scaled(width,height,Qt::KeepAspectRatio));
+template <class T>
+void ViewARVR::ShowImage(T* label, const std::string& image) {
+  QPixmap pix(configuration_->GetDataFilePath(image).c_str());
+  int width = label->width();
+  int height = label->height();
+  label->setPixmap(pix.scaled(width, height, Qt::KeepAspectRatio));
 }
 
-void ViewARVR::showNormalImage()
-{
-    QPixmap pix("../LARABuild/Data/Pos5_undistorted.jpg");
-    int width = ui->label_normal->width();
-    int height = ui->label_normal->height();
-    ui->label_normal->setPixmap(pix.scaled(width,height,Qt::KeepAspectRatio));
+void ViewARVR::OnRendererProccessExit(int exit_code,
+                                      QProcess::ExitStatus exit_status) {
+  ShowImage(ui_->label_normal, arinfuse::Configuration::kAugmentedImageFile);
 }
 
-void ViewARVR::runLARAapp()
-{
-    QString path_to_exe = "../LARABuild/LARA.exe";
-    QStringList arg_list;
-    arg_list << "-popupwindow" << "-in_xml" << "../LARABuild/Data/preprocessed.xml" << "-in_image" << "../LARABuild/Data/Pos5_undistorted.jpg"
-             << "-in_pose" << "../LARABuild/Data/pose_ar.txt" << "-in_params" << "../LARABuild/Data/params_ar.txt" << "-in_cammins" << "../LARABuild/Data/camera_mins.txt"
-             << "-AugmentedImage" << "../LARABuild/Data/image_augmented.jpg" << "-DepthPass" << "../LARABuild/Data/image_depth.pam" << "-IdPass ../LARABuild/Data/image_ID.jpg"
-             << "-UnityOutput" << "../LARABuild/Data/unity_output.txt";
-    QProcess::execute(path_to_exe, arg_list);
+bool ViewARVR::runLARAapp() {
+  return tool_runner_->RunTool(
+      kLaraTool,
+      {"-in_xml",
+       configuration_->GetDataFilePath(
+           arinfuse::Configuration::kPreprocessedXmlFile),
+       "-in_image",
+       configuration_->GetDataFilePath(
+           arinfuse::Configuration::kInputImageFile),
+       "-in_pose",
+       configuration_->GetDataFilePath(
+           arinfuse::Configuration::kCameraPoseFile),
+       "-in_params",
+       configuration_->GetDataFilePath(
+           arinfuse::Configuration::kCameraCalibrationFile),
+       "-in_cammins",
+       configuration_->GetDataFilePath(
+           arinfuse::Configuration::kCameraPositionOffsetFile),
+       "-AugmentedImage",
+       configuration_->GetDataFilePath(
+           arinfuse::Configuration::kAugmentedImageFile),
+       "-DepthPass",
+       configuration_->GetDataFilePath(arinfuse::Configuration::kDepthPassFile),
+       "-IdPass",
+       configuration_->GetDataFilePath(arinfuse::Configuration::kIdPassFile),
+       "-UnityOutput",
+       configuration_->GetDataFilePath(
+           arinfuse::Configuration::kUnityOutputFile)},
+      std::bind(&ViewARVR::OnRendererProccessExit, this, std::placeholders::_1,
+                std::placeholders::_2));
 }
 

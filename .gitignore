@@ -1,3 +1,8 @@
+*.lnk
+
+/GIS-MODULE/
+/.vscode/
+
 # C++ objects and libs
 *.slo
 *.lo

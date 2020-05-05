@@ -25,23 +25,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    viewarvr.cpp \
-    viewgis.cpp \
-    settings.cpp
+  configuration.cpp \
+  main.cpp \
+  mainwindow.cpp \
+  settings_view.cpp \
+  tool_runner.cpp \
+  trainee_view.cpp \
+  trainer_view.cpp \
+  viewarvr.cpp
 
 HEADERS += \
-        mainwindow.h \
-    viewarvr.h \
-    viewgis.h \
-    settings.h
+  configuration.h \
+  mainwindow.h \
+  settings_view.h \
+  tool_runner.h \
+  trainee_view.h \
+  trainer_view.h \
+  viewarvr.h
 
 FORMS += \
-        mainwindow.ui \
-    viewarvr.ui \
-    viewgis.ui \
-    settings.ui
+  mainwindow.ui \
+  viewarvr.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

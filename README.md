@@ -28,13 +28,12 @@ please have the following installed on your PC:
   - CMake 3.4 (or later)
   - Visual Studio 14 (2015)
 
-You'll also need access to `arbase-extlibs`. Ask a DFKI collegue for help how to
-access the folder.
+You'll also need access to OpenCV and Eigen. 
 
 After cloning, open the project in `tools` with CMake GUI and configure it with
 `Visual Studio 14 (2015)` and `x64`. If configuring fails, set `OPENCV_DIR` to
-`<arbase-extlibs>/org_opencv` and `EIGEN_DIR` to
-`<arbase-extlibs>/org_bitbucket_eigen_eigen/lib/cmake/eigen3`. You can ignore
+your OpenCV and `EIGEN_DIR` to
+your Eigen (version 3) folders respectivley. You can ignore
 warnings about missing CUDA. Once configuration succeeds, generate the project
 in `<cmake-build>`, open the solutions file in Visual Studio, and compile
 everything.
@@ -46,8 +45,7 @@ the path). Now, copy the following files to `<tools>`.
   - `<cmake-build>/arinfuse/pose_estimation/{Debug,Release}/pose_estimation.exe` -> `<tools>/pose_estimation/pose_estimation.exe`
   - `<cmake-build>/arinfuse/xml_preproccessor/{Debug,Release}/xml_preproccessor.exe` -> `<tools>/xml_preproccessor/xml_preproccessor.exe`
 
-Finally, clone `Lara` (at the time of writing, branch `new_command_line_parser`)
-and build the Unity project as `<tools>/LARABuild`.
+Finally, add the renderer -> `<tools>/LARABuild`.
 
 Now, you're ready to launch the QT application. Don't forget to update
 `Tool path` and `Data path` in the settings tab!

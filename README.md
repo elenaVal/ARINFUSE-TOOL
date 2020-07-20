@@ -49,8 +49,6 @@ the path). Now, copy the following files to `<tools>`.
 Finally, clone `Lara` (at the time of writing, branch `new_command_line_parser`)
 and build the Unity project as `<tools>/LARABuild`.
 
-TODO(narek): Document how to get `<tools>/GIS-MODULE`.
-
 Now, you're ready to launch the QT application. Don't forget to update
 `Tool path` and `Data path` in the settings tab!
 

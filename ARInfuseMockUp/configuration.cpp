@@ -18,5 +18,6 @@ const std::string Configuration::kDepthPassFile = "depth_pass.pam";
 const std::string Configuration::kIdPassFile = "id_pass.jpg";
 const std::string Configuration::kPreprocessedXmlFile = "preprocessed.xml";
 const std::string Configuration::kUnityOutputFile = "unity_putput.txt";
+const std::string Configuration::KStreetLevel = "false";
 
 }  // namespace arinfuse

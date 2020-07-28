@@ -72,8 +72,10 @@ bool ViewARVR::runLARAapp() {
        "-IdPass",
        configuration_->GetDataFilePath(arinfuse::Configuration::kIdPassFile),
        "-UnityOutput",
-       configuration_->GetDataFilePath(
-           arinfuse::Configuration::kUnityOutputFile)},
+       configuration_->GetDataFilePath(arinfuse::Configuration::kUnityOutputFile)},
+      // "-StreetLevel",
+      // configuration_->GetDataFilePath(
+        //          arinfuse::Configuration::KStreetLevel)},
       std::bind(&ViewARVR::OnRendererProccessExit, this, std::placeholders::_1,
                 std::placeholders::_2));
 }

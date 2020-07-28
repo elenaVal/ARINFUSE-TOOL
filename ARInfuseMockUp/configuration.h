@@ -24,6 +24,7 @@ class Configuration {
    static const std::string kIdPassFile;
    static const std::string kPreprocessedXmlFile;
    static const std::string kUnityOutputFile;
+   static const std::string KStreetLevel;
 
    virtual std::string GetDataFilePath(const std::string &file) const = 0;
    virtual std::string GetToolPath(const std::string &tool) const = 0;

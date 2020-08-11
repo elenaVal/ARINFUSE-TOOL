@@ -10,8 +10,9 @@
 cmake_minimum_required(VERSION 3.4)
 
 add_library(camera_calibration_lib
-  camera_calibration.cc
-  camera_calibration.h
+  STATIC
+    camera_calibration.cc
+    camera_calibration.h
 )
 target_link_libraries(camera_calibration_lib
   opencv_core

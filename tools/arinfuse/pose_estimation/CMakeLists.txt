@@ -15,8 +15,6 @@ add_executable(pose_estimation
   pose_estimation.h
   pose_estimation_window.cc
   pose_estimation_window.h
-  # PnpSolver.cc
-  # PnpSolver.h
 )
 target_link_libraries(pose_estimation
   opencv_calib3d

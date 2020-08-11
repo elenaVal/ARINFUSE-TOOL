@@ -10,8 +10,9 @@
 cmake_minimum_required(VERSION 3.4)
 
 add_library(opencv_image_viewer
-  opencv_image_viewer.cc
-  opencv_image_viewer.h
+  STATIC
+    opencv_image_viewer.cc
+    opencv_image_viewer.h
 )
 target_link_libraries(opencv_image_viewer
   opencv_core

@@ -12,12 +12,13 @@ cmake_minimum_required(VERSION 3.4)
 # TODO(yannic): Suppress warnings.
 
 add_library(tinyxml
-  include/tinystr.h
-  include/tinyxml.h
-  src/tinystr.cpp
-  src/tinyxml.cpp
-  src/tinyxmlerror.cpp
-  src/tinyxmlparser.cpp
+  STATIC
+    include/tinystr.h
+    include/tinyxml.h
+    src/tinystr.cpp
+    src/tinyxml.cpp
+    src/tinyxmlerror.cpp
+    src/tinyxmlparser.cpp
 )
 target_include_directories(tinyxml
   PUBLIC

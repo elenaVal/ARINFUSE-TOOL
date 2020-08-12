@@ -11,6 +11,7 @@ cmake_minimum_required(VERSION 3.4)
 
 project(arinfuse)
 
+set(OpenCV_STATIC ON)
 find_package(OpenCV 3.4.1 REQUIRED)
 find_package(Eigen3 REQUIRED)
 
